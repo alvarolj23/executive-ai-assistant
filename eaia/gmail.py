@@ -115,9 +115,18 @@ def get_recipients(
     sender = None
     for header in headers:
         if header["name"].lower() in ["to", "cc"]:
-            recipients.update(header["value"].replace(" ", "").split(","))
+            # Split by comma but preserve email format
+            emails = [e.strip() for e in header["value"].split(",")]
+            # Extract just the email part if there's a display name
+            for email in emails:
+                if "<" in email and ">" in email:
+                    email = email[email.find("<")+1:email.find(">")]
+                recipients.add(email.strip())
         if header["name"].lower() == "from":
             sender = header["value"]
+            if "<" in sender and ">" in sender:
+                sender = sender[sender.find("<")+1:sender.find(">")]
+            sender = sender.strip()
     if sender:
         recipients.add(sender)  # Ensure the original sender is included in the response
     for r in list(recipients):
