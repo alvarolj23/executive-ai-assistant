@@ -1,7 +1,6 @@
 """Core agent responsible for drafting email."""
 
 from langchain_core.runnables import RunnableConfig
-from langchain_openai import ChatOpenAI
 from langgraph.store.base import BaseStore
 
 from eaia.schemas import (
@@ -15,6 +14,7 @@ from eaia.schemas import (
     email_template,
 )
 from eaia.main.config import get_config
+from eaia.main.azure_config import get_azure_llm
 
 EMAIL_WRITING_INSTRUCTIONS = """You are {full_name}'s executive assistant. You are a top-notch executive assistant who cares about {name} performing as well as possible.
 
@@ -82,11 +82,10 @@ Here is the email thread. Note that this is the full email thread. Pay special a
 async def draft_response(state: State, config: RunnableConfig, store: BaseStore):
     """Write an email to a customer."""
     model = config["configurable"].get("model", "gpt-4o")
-    llm = ChatOpenAI(
-        model=model,
+    llm = get_azure_llm(
         temperature=0,
-        parallel_tool_calls=False,
-        tool_choice="required",
+        model=model,
+        disable_streaming=True,
     )
     tools = [
         NewEmailDraft,

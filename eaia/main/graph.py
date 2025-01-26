@@ -6,6 +6,11 @@ from langchain_core.messages import HumanMessage
 from eaia.main.triage import (
     triage_input,
 )
+from dotenv import load_dotenv
+import os
+
+load_dotenv() 
+
 from eaia.main.draft_response import draft_response
 from eaia.main.find_meeting_time import find_meeting_time
 from eaia.main.rewrite import rewrite

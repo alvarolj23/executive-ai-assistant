@@ -7,6 +7,11 @@ import hashlib
 from langgraph.graph import StateGraph, START, END
 from eaia.main.config import get_config
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv() 
+
 client = get_client()
 
 

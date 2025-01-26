@@ -11,7 +11,7 @@
   },
   "store": {
     "index": {
-      "embed": "openai:text-embedding-3-small",
+      "embed": "azure_openai:text-embedding-ada-002",
       "dims": 1536
     }
   }
