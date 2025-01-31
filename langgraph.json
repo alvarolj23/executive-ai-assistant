@@ -11,7 +11,7 @@
   },
   "store": {
     "index": {
-      "embed": "./eaia/embeddings.py:init_embeddings",
+      "embed": "azure_openai:text-embedding-ada-002",
       "dims": 1536
     }
   }

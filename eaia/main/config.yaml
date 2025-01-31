@@ -1,15 +1,14 @@
-email: johan@jvc-co.be
+email: ...
 full_name: Johan Van Campenhout
 name: Johan
 background: Johan is the owner of JVC & Co bvba, a Belgian company specializing in heating and plumbing services. The company provides central heating and sanitary installations, with expertise in thermal solar energy systems.
-schedule_preferences: By default, work hours are Monday to Saturday, 9:00 AM to 7:00 PM, with service areas in Brussels, Antwerp, Ghent and surroundings. Appointments should be minimum 1 hour with travel time considered between locations.
+schedule_preferences: By default, work hours are Monday to Saturday, 9:00 AM to 7:00 PM, with service areas in Brussels, Antwerp, Ghent and surroundings.
 background_preferences: |
-  As a sole proprietor specializing in heating and plumbing services, all technical queries and service requests should be handled directly. Certified for EPB heating boiler technician (liquid fuel) and thermal solar energy systems for sanitary hot water. VAT Number: BE0841985338.
-response_preferences: |
-  Include company details (VAT, address) in formal quotes. For maintenance requests, always confirm the type of heating system and last maintenance date. Include contact number (0473/91.89.93) in all scheduling confirmations.
+  As a sole proprietor specializing in heating and plumbing services, all technical queries and service requests should be handled directly and promptly. Focus on maintenance, repairs, and installations in the Brussels, Antwerp, and Ghent areas.
+response_preferences:
 timezone: "CET"
 rewrite_preferences: |
-  Johan has a few rules for how his emails to be written:
+  Johan has a few rules for how he likes his emails to be written:
 
   - Always maintain a formal and professional tone in all communications
   - Match the language of the customer (Dutch, French, or English)
@@ -24,30 +23,26 @@ triage_no: |
   - Social media notifications
   - Non-business related emails
   - Automated calendar invitations
-  - Spam or irrelevant industry newsletters
 
 triage_notify: |
-  - Supply chain or parts availability updates
-  - Industry regulation updates
-  - Training or certification opportunities
-  - Non-urgent supplier communications
-  - General industry news or updates
-  - Warranty documentation (when not urgent)
-  - General customer feedback (when positive)
+  - Any urgent maintenance or repair requests from customers
+  - Requests for quotes or estimates
+  - Technical questions about heating systems or installations
+  - Warranty-related inquiries
+  - Supply chain or parts availability updates that might affect customer service
+  - Emergency service requests outside normal hours
 
 triage_email: |
-  - Emergency heating or plumbing service requests
-  - All maintenance and repair scheduling requests
-  - Quote requests for installations or repairs
-  - Technical questions about heating systems
-  - Urgent warranty claims
-  - Customer complaints or urgent feedback
-  - Requests for technical documentation
-  - Follow-up emails about ongoing projects
-  - All appointment confirmation or modification requests
-  - Emergency service requests (even outside normal hours)
-  - Critical parts or equipment inquiries
-  - Urgent supplier communications about ongoing projects
+  - All customer inquiries about maintenance, repairs, or installations
+  - Emergency service requests
+  - Quote requests for new installations or major repairs
+  - Follow-up emails from existing customers
+  - Technical queries about heating systems
+  - Scheduling requests for maintenance or repairs
+  - Emails about parts or equipment availability
+  - Customer feedback or concerns
+  - Any email that requires technical expertise or scheduling of on-site work
+  - Emails where customers are trying to schedule maintenance or repairs
 
   Reminder - automated calendar invites do NOT count as real emails
 memory: true
