@@ -294,8 +294,33 @@ class CalInput(BaseModel):
     )
 
 
+def get_calendar_id(calendar_name: str = "primary") -> str:
+    """
+    Get the calendar ID for a specific calendar name.
+    
+    Args:
+        calendar_name: The name of the calendar to find. Defaults to "primary".
+        
+    Returns:
+        The calendar ID if found, otherwise returns "primary"
+    """
+    creds = get_credentials(None, None)
+    service = build("calendar", "v3", credentials=creds)
+    
+    # Get list of all calendars
+    calendar_list = service.calendarList().list().execute()
+    
+    # Find the calendar with matching name
+    for calendar_list_entry in calendar_list['items']:
+        if calendar_list_entry['summary'] == calendar_name:
+            return calendar_list_entry['id']
+            
+    # If not found, return primary
+    return "primary"
+
+
 @tool(args_schema=CalInput)
-def get_events_for_days(date_strs: list[str]):
+def get_events_for_days(date_strs: list[str], calendar_name: str = "primary"):
     """
     Retrieves events for a list of days. If you want to check for multiple days, call this with multiple inputs.
 
@@ -303,12 +328,14 @@ def get_events_for_days(date_strs: list[str]):
 
     Args:
     date_strs: The days for which to retrieve events (dd-mm-yyyy string).
+    calendar_name: Name of the calendar to check. Defaults to primary calendar.
 
     Returns: availability for those days.
     """
 
     creds = get_credentials(None, None)
     service = build("calendar", "v3", credentials=creds)
+    calendar_id = get_calendar_id(calendar_name)
     results = ""
     for date_str in date_strs:
         # Convert the date string to a datetime.date object
@@ -320,7 +347,7 @@ def get_events_for_days(date_strs: list[str]):
         events_result = (
             service.events()
             .list(
-                calendarId="primary",
+                calendarId=calendar_id,
                 timeMin=start_of_day,
                 timeMax=end_of_day,
                 singleEvents=True,
@@ -380,10 +407,11 @@ def print_events(events):
 
 
 def send_calendar_invite(
-    emails, title, start_time, end_time, email_address, timezone="PST"
+    emails, title, start_time, end_time, email_address, timezone="PST", calendar_name="primary"
 ):
     creds = get_credentials(None, None)
     service = build("calendar", "v3", credentials=creds)
+    calendar_id = get_calendar_id(calendar_name)
 
     # Parse the start and end times
     start_datetime = datetime.fromisoformat(start_time)
@@ -417,7 +445,7 @@ def send_calendar_invite(
 
     try:
         service.events().insert(
-            calendarId="primary",
+            calendarId=calendar_id,
             body=event,
             sendNotifications=True,
             conferenceDataVersion=1,

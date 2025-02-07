@@ -69,6 +69,7 @@ async def find_meeting_time(state: State, config: RunnableConfig):
     agent = create_react_agent(llm, [get_events_for_days])
     current_date = datetime.now()
     prompt_config = get_config(config)
+    calendar_name = prompt_config.get("calendar_name", "primary")
     input_message = meeting_prompts.format(
         email_thread=state["email"]["page_content"],
         author=state["email"]["from_email"],
@@ -82,7 +83,10 @@ async def find_meeting_time(state: State, config: RunnableConfig):
     # we do this because theres currently a tool call just for routing
     messages = messages[:-1]
     result = await agent.ainvoke(
-        {"messages": [{"role": "user", "content": input_message}] + messages}
+        {
+            "messages": [{"role": "user", "content": input_message}] + messages,
+            "calendar_name": calendar_name,
+        }
     )
     prediction = state["messages"][-1]
     tool_call = prediction.tool_calls[0]
