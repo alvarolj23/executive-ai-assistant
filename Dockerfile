@@ -28,7 +28,7 @@ FROM python:3.11-slim AS runtime
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PATH="/app/.venv/bin:$PATH" \
-    PORT=2024 \
+    PORT=8081 \
     HOST=0.0.0.0
 
 # Create non-root user
@@ -57,8 +57,8 @@ RUN chown -R app:app /app
 # Switch to non-root user
 USER app
 
-# Expose the correct port (2024 as specified in run_langgraph.py)
-EXPOSE 2024
+# Expose the Azure App Service port
+EXPOSE 8081
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \

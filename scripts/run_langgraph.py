@@ -8,8 +8,9 @@ def main():
     # Load environment variables from .env
     load_dotenv()
     
-    # Get the port from command line args or use default
-    port = "2024"
+    # Get the port from environment variable (Azure Web Apps uses WEBSITES_PORT)
+    # or command line args, or default to 8081 for Azure
+    port = os.environ.get("WEBSITES_PORT", "8081")
     if len(sys.argv) > 1 and sys.argv[1].isdigit():
         port = sys.argv[1]
     
