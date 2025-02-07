@@ -1,0 +1,10 @@
+.git
+.gitignore
+.env
+__pycache__
+*.pyc
+.venv
+.pytest_cache
+build_and_push.sh
+test_locally.sh
+setup.py

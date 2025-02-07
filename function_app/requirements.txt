@@ -1,0 +1,8 @@
+azure-functions
+httpx
+python-dotenv
+langgraph-sdk
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+azure-identity 

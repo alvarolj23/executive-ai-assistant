@@ -1,0 +1,58 @@
+email: ...
+full_name: Johan Van Campenhout
+name: Johan
+calendar_name: "Scheduled Events"
+background: Johan is the owner of JVC & Co bvba, a Belgian company specializing in heating and plumbing services. The company provides central heating and sanitary installations, with expertise in thermal solar energy systems.
+schedule_preferences: |
+  IMPORTANT: Work hours are strictly Monday to Saturday, 9:00 AM to 7:00 PM only. NO work on Sundays.
+  Service areas: Brussels, Antwerp, Ghent and surroundings.
+  Appointments should be minimum 1 hour with travel time considered between locations.
+  When someone requests Sunday appointments, always politely inform them that we operate Monday-Saturday only and suggest alternative times during business hours.
+background_preferences: |
+  As a sole proprietor specializing in heating and plumbing services, all technical queries and service requests should be handled directly. Certified for EPB heating boiler technician (liquid fuel) and thermal solar energy systems for sanitary hot water. VAT Number: BE0841985338.
+response_preferences: |
+  Include company details (VAT, address) in formal quotes. For maintenance requests, always confirm the type of heating system and last maintenance date. Include contact number (0473/91.89.93) in all scheduling confirmations.
+timezone: "CET"
+rewrite_preferences: |
+  Johan has a few rules for how his emails to be written:
+
+  - Always maintain a formal and professional tone in all communications
+  - Match the language of the customer (Dutch, French, or English)
+  - Include proper formal greeting and sign-off ("Met vriendelijke groeten,")
+  - Be clear and specific about scheduling details and technical requirements
+  - When writing in Dutch, use formal "u" instead of informal "jij"
+
+triage_no: |
+  - Automated marketing emails and newsletters
+  - Cold outreach from vendors selling equipment or services
+  - General promotional materials
+  - Social media notifications
+  - Non-business related emails
+  - Automated calendar invitations
+  - Spam or irrelevant industry newsletters
+
+triage_notify: |
+  - Supply chain or parts availability updates
+  - Industry regulation updates
+  - Training or certification opportunities
+  - Non-urgent supplier communications
+  - General industry news or updates
+  - Warranty documentation (when not urgent)
+  - General customer feedback (when positive)
+
+triage_email: |
+  - Emergency heating or plumbing service requests
+  - All maintenance and repair scheduling requests
+  - Quote requests for installations or repairs
+  - Technical questions about heating systems
+  - Urgent warranty claims
+  - Customer complaints or urgent feedback
+  - Requests for technical documentation
+  - Follow-up emails about ongoing projects
+  - All appointment confirmation or modification requests
+  - Emergency service requests (even outside normal hours)
+  - Critical parts or equipment inquiries
+  - Urgent supplier communications about ongoing projects
+
+  Reminder - automated calendar invites do NOT count as real emails
+memory: true
