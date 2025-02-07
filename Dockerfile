@@ -28,7 +28,8 @@ FROM python:3.11-slim AS runtime
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PATH="/app/.venv/bin:$PATH" \
-    PORT=2024
+    PORT=2024 \
+    HOST=0.0.0.0
 
 # Create non-root user
 RUN useradd -m -s /bin/bash app
@@ -47,6 +48,9 @@ COPY eaia ./eaia
 COPY scripts ./scripts
 COPY pyproject.toml poetry.lock README.md langgraph.json ./
 
+# Create config directory and ensure it exists
+RUN mkdir -p /app/config
+
 # Set ownership to non-root user
 RUN chown -R app:app /app
 
@@ -58,7 +62,7 @@ EXPOSE 2024
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:${PORT:-2024}/health || exit 1
+    CMD curl -f http://localhost:${PORT}/health || exit 1
 
 # Command to run the application
 CMD ["python", "scripts/run_langgraph.py"] 

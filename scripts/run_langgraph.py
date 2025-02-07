@@ -13,8 +13,8 @@ def main():
     if len(sys.argv) > 1 and sys.argv[1].isdigit():
         port = sys.argv[1]
     
-    # Run langgraph with the loaded environment
-    cmd = ["langgraph", "dev", "--port", port]
+    # Run langgraph with the loaded environment, binding to all interfaces
+    cmd = ["langgraph", "dev", "--port", port, "--host", "0.0.0.0"]
     subprocess.run(cmd, env=os.environ)
 
 if __name__ == "__main__":
