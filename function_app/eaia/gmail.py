@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Iterable
 import pytz
 import os
+import json
 
 from dateutil import parser
 from google.auth.transport.requests import Request
@@ -35,34 +36,31 @@ _TOKEN_PATH = str(_SECRETS_DIR / "token.json")
 def get_credentials(
     gmail_token: str | None = None, gmail_secret: str | None = None
 ) -> Credentials:
-    creds = None
-    _SECRETS_DIR.mkdir(parents=True, exist_ok=True)
+    """Get Gmail credentials from environment variables."""
     gmail_token = gmail_token or os.getenv("GMAIL_TOKEN")
-    if gmail_token:
-        with open(_TOKEN_PATH, "w") as token:
-            token.write(gmail_token)
-    gmail_secret = gmail_secret or os.getenv("GMAIL_SECRET")
-    if gmail_secret:
-        with open(_SECRETS_PATH, "w") as secret:
-            secret.write(gmail_secret)
-    if os.path.exists(_TOKEN_PATH):
-        creds = Credentials.from_authorized_user_file(_TOKEN_PATH)
+    if not gmail_token:
+        raise ValueError("GMAIL_TOKEN environment variable is not set")
 
-    if not creds or not creds.valid or not creds.has_scopes(_SCOPES):
-        if (
-            creds
-            and creds.expired
-            and creds.refresh_token
-            and creds.has_scopes(_SCOPES)
-        ):
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(_SECRETS_PATH, _SCOPES)
-            creds = flow.run_local_server(port=_PORT)
-        with open(_TOKEN_PATH, "w") as token:
-            token.write(creds.to_json())
-
-    return creds
+    try:
+        token_info = json.loads(gmail_token)
+        creds = Credentials(
+            token=token_info["token"],
+            refresh_token=token_info["refresh_token"],
+            token_uri=token_info["token_uri"],
+            client_id=token_info["client_id"],
+            client_secret=token_info["client_secret"],
+            scopes=token_info["scopes"]
+        )
+        return creds
+    except json.JSONDecodeError as e:
+        logger.error(f"Failed to parse Gmail token JSON: {str(e)}")
+        raise
+    except KeyError as e:
+        logger.error(f"Missing required field in Gmail token: {str(e)}")
+        raise
+    except Exception as e:
+        logger.error(f"Error creating Gmail credentials: {str(e)}")
+        raise
 
 
 def extract_message_part(msg):
