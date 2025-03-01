@@ -9,7 +9,7 @@ RESOURCE_GROUP="rg-crypto-analysis"
 LOCATION="West Europe"
 
 # Application version and container name
-APP="email-ingest-function:v1.0.5"
+APP="email-ingest-function:v1.0.7"
 
 # Set Azure subscription
 echo "Setting Azure subscription..."
