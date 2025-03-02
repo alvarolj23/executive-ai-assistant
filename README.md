@@ -40,7 +40,14 @@ Table of contents
       2. `mkdir eaia/.secrets` - This will create a folder for secrets
       3. `mv ${PATH-TO-CLIENT-SECRET.JSON} eaia/.secrets/secrets.json` - This will move the client secret you just created to that secrets folder
       4. `python scripts/setup_gmail.py` - This will generate another file at `eaia/.secrets/token.json` for accessing Google services.
-4. Export LangSmith API key (`export LANGSMITH_API_KEY`)
+4. **Enable Google Calendar API**
+   1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
+   2. Select an existing project or create a new one by clicking on the project dropdown and selecting "New Project".
+   3. Once your project is selected, click on the "Enable APIs and Services" button in the APIs & Services dashboard.
+   4. In the API Library, search for "Google Calendar API" or scroll down to find it.
+   5. Click on the "Google Calendar API" tile.
+   6. Click the "Enable" button to activate the API for your project.
+5. Export LangSmith API key (`export LANGSMITH_API_KEY`)
 
 ### Configuration
 

@@ -1,0 +1,56 @@
+---
+description: this rule is helpful when using Azure resources
+globs: 
+alwaysApply: false
+---
+
+- Always use the latest stable versions of Azure SDKs and LangChain
+- Follow Azure naming conventions for resources
+- Implement proper error handling and logging
+- Use environment variables for sensitive information
+- Adhere to PEP 8 style guide for Python code
+
+## Azure OpenAI
+
+- Use Azure OpenAI API version "2024-02-01" or later
+- Implement retry logic for API calls
+- Use async methods when possible for better performance
+
+## LangChain
+
+- Prefer LangChain v0.2 or later syntax and patterns
+- Use LangChain's Azure-specific classes when available
+- Implement proper exception handling for LangChain operations
+
+## Azure AI Search (RAG)
+
+- Use the latest Azure AI Search SDK
+- Implement vector search capabilities when appropriate
+- Optimize indexing strategies for better performance
+
+## Containers and Docker
+
+- Use multi-stage builds for optimized container images
+- Include .dockerignore file to exclude unnecessary files
+- Follow best practices for securing containers
+
+## Azure Functions
+
+- Use Python 3.9 or later for Azure Functions
+- Implement proper dependency management using requirements.txt
+- Use async programming model when applicable
+
+## Azure Web Apps
+
+- Use App Service on Linux for Python applications
+- Implement proper WSGI server configuration
+- Use deployment slots for zero-downtime updates
+
+## Best Practices
+
+- Implement proper authentication and authorization
+- Use Azure Monitor for application insights
+- Implement proper data backup and disaster recovery strategies
+- Follow the principle of least privilege for Azure resources
+- Regularly update dependencies and review security advisories
+
